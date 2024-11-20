@@ -12,9 +12,15 @@ import dashboardRoutes from './routes/dashboard'
 const app = express()
 const port = 3004
 
+app.use(cors({
+  origin: 'https://emergentes242-cliente-6hhbo8haq-edecios-projects.vercel.app', // URL da aplicação cliente
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+  credentials: true, // Se a aplicação usa cookies ou sessões
+}));
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
 
 app.use("/marcas", marcasRoutes)
 app.use("/carros", carrosRoutes)
